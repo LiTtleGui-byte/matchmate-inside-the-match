@@ -51,15 +51,6 @@ HTML, CSS and native JavaScript modules; **hls.js 1.6.16** for compatible HLS pl
 
 Use match records, lineup information, player images and video only with appropriate access and redistribution rights. The hosted demonstration uses a recorded match; its footage and match records are real, not synthetic. Timing and metric availability depend on the connected sources. Team initials in this client are text-based marks.
 
-## Limitations
-
-- The live-like experience uses a recording; it is not an actual live broadcast.
-- Browser autoplay policy can require muted playback or a user gesture.
-- Speech input and read-aloud voices vary by browser and device.
-- A missing metric remains unavailable; charts and player details depend on supplied records.
-- Event timestamps can have minute-level precision, so replay alignment is approximate.
-- Local UI checks do not establish live service availability, model quality or production capacity.
-
 ## Rights and acknowledgements
 
 MatchMate materials: all rights reserved. Third-party components retain their respective licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
