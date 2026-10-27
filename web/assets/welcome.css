@@ -1,0 +1,16 @@
+/* Persistent English welcome questions, matching the original demo's quiet rows. */
+#conversation .quiet-welcome { padding: 8px 0 24px; margin-bottom: 24px; border-bottom: .5px solid var(--line); color: var(--tx); }
+.starter-heading { display: flex; align-items: flex-start; gap: 10px; }
+.starter-heading img { width: 26px; height: 34px; margin-top: 24px; object-fit: contain; flex-shrink: 0; }
+[data-theme=dark] .starter-heading img { filter: invert(1); }
+.starter-heading strong { display: block; font-size: 14px; line-height: 1.5; font-weight: 500; color: var(--gold); }
+#conversation .starter-heading p { margin: 7px 0 0; font-size: 14px; line-height: 1.6; color: var(--tx); }
+.starter-questions { margin: 12px 0 8px 36px; }
+.starter-question { display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; min-height: 44px; padding: 10px 0; border: 0; border-bottom: .5px solid var(--line); border-radius: 0; background: transparent; color: var(--tx2); font-size: 14px; line-height: 1.5; text-align: left; }
+.starter-question:last-child { border-bottom: 0; }
+.starter-question > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.starter-question > span:last-child { flex-shrink: 0; font-size: 18px; color: var(--mut); }
+.starter-question:not(:disabled):hover { color: var(--tx); background: var(--rec); }
+.starter-question:disabled { cursor: default; }
+#conversation .quiet-welcome .first-moment-link { margin-left: 36px; font-size: 12px; text-align: left; }
+@media(max-width:800px) { #conversation .quiet-welcome { padding-top: 4px; padding-bottom: 20px; } }

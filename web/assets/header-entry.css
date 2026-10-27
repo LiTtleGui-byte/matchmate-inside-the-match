@@ -1,0 +1,10 @@
+/* Keep scoreboard text inside its column, including shoot-outs. */
+.demo-header .match-info{grid-template-columns:minmax(0,1.65fr) auto minmax(0,1fr)}
+.demo-header .match-info__side{overflow:hidden}
+.demo-header .match-info__name{overflow:hidden}
+.demo-header .match-info__name strong{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.demo-header .match-info__name small{white-space:nowrap}
+.demo-header .match-info__center{min-width:56px;max-width:100px;flex-shrink:0}
+.demo-header .match-info__penalties{font-size:10px;line-height:1.25;letter-spacing:0;font-weight:600;color:var(--tx2);white-space:nowrap}
+@media(min-width:1181px){.topbar.demo-header{grid-template-columns:auto minmax(420px,720px) minmax(0,1fr)}}
+@media(max-width:800px){.demo-header .match-info{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}.demo-header .match-info__center{min-width:48px;max-width:80px}.demo-header .match-info__name strong{white-space:normal;overflow-wrap:anywhere}.demo-header .match-info__penalties{font-size:9px}}

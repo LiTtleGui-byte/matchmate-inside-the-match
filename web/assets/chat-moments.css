@@ -1,0 +1,12 @@
+/* Key events invite explanation inside chat, without a video overlay/banner. */
+#conversation .moment-invitation{margin:0 0 22px;padding:10px 0;border:0;border-radius:0;background:transparent;animation:moment-arrives .18s ease-out}
+#conversation .moment-invitation-event{margin:0 0 6px;color:var(--tx2);font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+#conversation .moment-invitation-question{margin:0;color:var(--tx);font-size:14px;line-height:1.65}
+#conversation .moment-invitation-actions{display:flex;align-items:center;gap:18px;margin-top:5px}
+#conversation .moment-invitation-actions button{min-height:36px;padding:5px 0;border:0;border-radius:4px;background:transparent;font-size:12px;line-height:1.5}
+#conversation .moment-invitation-explain{color:var(--home);font-weight:600}#conversation .moment-invitation-dismiss{color:var(--mut)}
+#conversation .moment-invitation-actions button:not(:disabled):hover{text-decoration:underline;text-underline-offset:4px}
+#conversation .moment-invitation-actions button:disabled{cursor:default}
+@keyframes moment-arrives{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:800px){#conversation .moment-invitation-actions button{min-height:40px}}
+@media(prefers-reduced-motion:reduce){#conversation .moment-invitation{animation:none}}

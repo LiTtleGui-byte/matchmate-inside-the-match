@@ -1,0 +1,360 @@
+/* Scoped English adaptation of the original demo styles. */
+#preferencesDialog,#toolsDialog.lineup-dialog{--surface:var(--panel);--surface-2:var(--rec);--border:var(--line);--text-1:var(--tx);--text-2:var(--tx2);--text-3:var(--mut);--accent:var(--home);--chart-home:var(--home);--chart-away:var(--away);--blue:var(--away);--sel-ring:var(--home);--sel-bg:color-mix(in srgb,var(--home) 7%,var(--panel));--radius:12px;--radius-sm:6px;--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--fs-xs:11px;--fs-sm:13px;--fs-md:16px;--fs-lg:20px;--shadow-card:0 2px 5px #0001;color:var(--tx)}
+[data-theme=light] #preferencesDialog .setup-copy .eyebrow{font-family: var(--font-accent); font-style: italic; font-weight: 500; letter-spacing: -0.005em;}
+[data-theme=light] #preferencesDialog .setup-panel{border-radius: var(--radius-sm);}
+#preferencesDialog .setup-panel{border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); box-shadow: none;}
+#preferencesDialog .section-title,#preferencesDialog .option-card,#preferencesDialog .sync-meter,#preferencesDialog .setup-actions{display: flex; align-items: center; justify-content: space-between; gap: 14px;}
+#preferencesDialog .sync-actions button{min-height: 38px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface-2); box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text-1) 6%, transparent);}
+#preferencesDialog .setup-panel{scrollbar-width: thin; scrollbar-color: var(--border) transparent;}
+#preferencesDialog .setup-panel::-webkit-scrollbar{width: 6px; height: 6px;}
+#preferencesDialog .setup-panel::-webkit-scrollbar-track{background: transparent;}
+#preferencesDialog .setup-panel::-webkit-scrollbar-thumb{background: var(--border); border-radius: 999px;}
+#preferencesDialog{width: min(1050px, 100% - 28px); max-height: min(880px, -28px + 100vh); padding: 0px; border: 0px; color: var(--text-1); background: transparent;}
+#preferencesDialog::backdrop{background: var(--modal-overlay); backdrop-filter: blur(10px);}
+#preferencesDialog .setup-panel{display: grid; gap: var(--sp-3); max-height: min(880px, -28px + 100vh); overflow: auto; overscroll-behavior: contain; padding: 18px;}
+@media (max-width: 720px) {#preferencesDialog .setup-panel.mm-first-run{gap: var(--sp-2); padding-bottom: max(10px, env(safe-area-inset-bottom));}
+#preferencesDialog .setup-panel.mm-first-run .setup-copy{padding: var(--sp-3);}
+#preferencesDialog .setup-panel.mm-first-run .setup-copy .eyebrow{display: none;}
+#preferencesDialog .setup-panel.mm-first-run .setup-copy h2{font-size: clamp(1.3rem, 6vw, 1.6rem); line-height: 1.18;}
+#preferencesDialog .setup-panel.mm-first-run .segmented{grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: var(--sp-1);}
+#preferencesDialog .setup-panel.mm-first-run .segmented label{justify-content: center; min-height: 44px; padding: 0 var(--sp-1); font-size: var(--fs-xs); white-space: nowrap;}
+#preferencesDialog .setup-panel.mm-first-run .segmented input{width: 14px; height: 14px; margin-right: 5px;}
+#preferencesDialog .setup-panel.mm-first-run .setup-actions{position: static; margin: 0px -10px -10px;}
+}
+#preferencesDialog .setup-copy{padding: 18px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface);}
+#preferencesDialog .setup-copy h2{max-width: 680px; font-size: clamp(1.8rem, 3vw, 3.2rem);}
+#preferencesDialog .setup-copy p:last-child,#preferencesDialog .section-title p,#preferencesDialog .option-card p{margin: 6px 0px 0px; color: var(--text-2); line-height: 1.55;}
+#preferencesDialog .setup-section{padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2);}
+#preferencesDialog .setup-advanced > .setup-section{margin: 12px; background: var(--surface);}
+#preferencesDialog .setup-advanced > .setup-section + .setup-section{margin-top: 0px;}
+#preferencesDialog .section-title{justify-content: flex-start; align-items: flex-start;}
+#preferencesDialog .segmented,#preferencesDialog .tag-grid,#preferencesDialog .compact-grid{display: grid; gap: 10px; margin-top: 14px;}
+#preferencesDialog .segmented{grid-template-columns: repeat(3, minmax(0px, 1fr));}
+#preferencesDialog .tag-grid{grid-template-columns: repeat(5, minmax(0px, 1fr));}
+#preferencesDialog .compact-grid{grid-template-columns: repeat(2, minmax(0px, 1fr));}
+#preferencesDialog .segmented label,#preferencesDialog .tag,#preferencesDialog .option-card{min-height: 50px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-card); transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, transform 0.15s;}
+#preferencesDialog .segmented label{display: flex; align-items: center; padding: 0px 14px;}
+#preferencesDialog .segmented input{width: 16px; height: 16px; margin: 0px 10px 0px 0px; accent-color: var(--accent);}
+#preferencesDialog .segmented label:has(input:checked),#preferencesDialog .tag.active{border-color: var(--sel-ring); background: var(--sel-bg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--sel-ring) 35%, transparent), var(--shadow-card);}
+#preferencesDialog .segmented label:hover,#preferencesDialog .tag:not(.active):not(:disabled):hover,#preferencesDialog .option-card:hover{border-color: color-mix(in srgb, var(--sel-ring) 45%, var(--border)); box-shadow: var(--shadow-card-hover); transform: translateY(-1px);}
+#preferencesDialog .tag{display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--sp-2); padding: var(--sp-3) var(--sp-2) 10px; min-height: 96px; cursor: pointer; transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, transform 0.15s, opacity 0.15s;}
+#preferencesDialog .tag:disabled{opacity: 0.3; cursor: not-allowed; box-shadow: none;}
+#preferencesDialog .tag-icon{width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); flex-shrink: 0; color: var(--blue); transition: background 0.15s, border-color 0.15s, color 0.15s;}
+#preferencesDialog .tag-label{font-size: var(--fs-xs); font-weight: 700; color: var(--text-1); white-space: nowrap; letter-spacing: 0.02em;}
+#preferencesDialog .tag-desc{font-size: var(--fs-2xs); color: var(--text-2); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; opacity: 0.92;}
+#preferencesDialog .tag.active .tag-icon{background: var(--surface-2); border-color: color-mix(in srgb, var(--sel-ring) 40%, var(--border)); color: var(--text-1);}
+#preferencesDialog .tag.active .tag-label{color: var(--text-1);}
+#preferencesDialog .custom-style{display: grid; grid-template-columns: minmax(180px, 0.6fr) minmax(320px, 1fr); gap: var(--sp-3); margin-top: 12px; padding: 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); box-shadow: var(--shadow-card);}
+#preferencesDialog .custom-style h4{margin: 0px; font-size: var(--fs-md);}
+#preferencesDialog .custom-style p{margin: 6px 0px 0px; color: var(--text-2); line-height: 1.5;}
+#preferencesDialog .custom-style-form{display: flex; flex-direction: column; gap: var(--sp-2);}
+#preferencesDialog .cs-form-top{display: flex; align-items: center; gap: var(--sp-2);}
+#preferencesDialog .cs-form-top #customStyleName{flex: 1 1 auto; min-width: 0px;}
+#preferencesDialog .cs-form-av{flex: 0 0 auto; width: 50px; height: 50px; border-radius: 50%; border: 1.5px dashed color-mix(in srgb, var(--text-2) 42%, transparent); background-image: ; background-repeat: ; background-attachment: ; background-origin: ; background-clip: ; background-color: ; background-size: cover; background-position: center center; cursor: pointer; overflow: hidden; padding: 0px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: var(--text-2); font-weight: 600; transition: border-color 0.12s, background 0.12s, color 0.12s;}
+#preferencesDialog .cs-form-av:hover{border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, var(--surface));}
+#preferencesDialog .cs-form-av-ico{opacity: 0.85;}
+#preferencesDialog .cs-form-av-ph{font-size: 9px; line-height: 1; letter-spacing: 0.03em;}
+#preferencesDialog .cs-form-av.has-img{border-style: solid; border-color: var(--accent);}
+#preferencesDialog .cs-form-av.has-img .cs-form-av-ico,#preferencesDialog .cs-form-av.has-img .cs-form-av-ph{display: none;}
+#preferencesDialog .user-avatar-row{display: flex; align-items: center; gap: 12px;}
+#preferencesDialog .user-avatar-row .ghost-button:disabled{opacity: 0.42; cursor: not-allowed;}
+#preferencesDialog .custom-style-form input,#preferencesDialog .custom-style-form textarea{background: color-mix(in srgb, var(--text-2) 4%, var(--surface)); border-radius: 10px;}
+#preferencesDialog .custom-style-form input{min-height: 42px; padding: 0px 13px;}
+#preferencesDialog .custom-style-form textarea{min-height: 54px; padding: 10px 13px;}
+#preferencesDialog .custom-style-form #addCustomStyle{align-self: flex-end; padding: 9px 24px; border-color: transparent; font-weight: 600; background: var(--accent); color: var(--accent-ink);}
+#preferencesDialog .custom-style-form #addCustomStyle:hover{filter: brightness(1.06);}
+#preferencesDialog .custom-style input,#preferencesDialog .custom-style textarea{width: 100%; border: 1px solid var(--border); border-radius: var(--radius-sm); outline: none; color: var(--text-1); background: var(--surface); transition: border-color 0.15s, box-shadow 0.15s;}
+#preferencesDialog .custom-style input::placeholder,#preferencesDialog .custom-style textarea::placeholder{color: var(--text-3);}
+#preferencesDialog .custom-style input:focus,#preferencesDialog .custom-style textarea:focus{border-color: var(--sel-ring); box-shadow: 0 0 0 2px color-mix(in srgb, var(--sel-ring) 28%, transparent);}
+#preferencesDialog .custom-style input{min-height: 38px; padding: 0px 11px;}
+#preferencesDialog .custom-style textarea{min-height: 38px; max-height: 82px; padding: var(--sp-2) 11px; resize: vertical;}
+#preferencesDialog .option-card{padding: 14px;}
+#preferencesDialog .switch{display: inline-flex; align-items: center; gap: 10px; color: var(--text-2); font-size: var(--fs-sm); white-space: nowrap;}
+#preferencesDialog .switch input{position: absolute; opacity: 0; pointer-events: none;}
+#preferencesDialog .switch span{position: relative; width: 48px; height: 26px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface-2);}
+#preferencesDialog .switch span::after{position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; content: ""; border-radius: 50%; background: var(--text-2); transition: transform 160ms, background 160ms;}
+#preferencesDialog .switch input:checked + span::after{transform: translateX(22px); background: var(--text-1);}
+#preferencesDialog .setup-panel.mm-first-run #syncSetupSection{display: none;}
+#preferencesDialog .sync-meter{margin: 10px 0px 0px; color: var(--text-2); font-size: var(--fs-sm);}
+#preferencesDialog .sync-meter strong{color: var(--text-1); font-size: 1.05rem;}
+#preferencesDialog .sync-actions{display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); margin-top: 12px;}
+#preferencesDialog .sync-actions button{min-width: 0px; padding: 0 var(--sp-2); font-size: var(--fs-sm);}
+#preferencesDialog .sync-fine{margin-top: 8px;}
+#preferencesDialog .sync-fine > summary{cursor: pointer; list-style: none; color: var(--text-2); font-size: var(--fs-sm); user-select: none;}
+#preferencesDialog .sync-fine > summary::-webkit-details-marker{display: none;}
+#preferencesDialog .sync-fine > summary::before{content: "▸ ";}
+#preferencesDialog .sync-fine[open] > summary::before{content: "▾ ";}
+#preferencesDialog .sync-fine input[type="range"]{margin-top: 8px;}
+#preferencesDialog .setup-actions{position: sticky; bottom: -18px; margin: 6px -18px -18px; padding: 13px 18px; background: var(--surface); border-top: 1px solid var(--border); box-shadow: rgba(0, 0, 0, 0.22) 0px -10px 22px -14px;}
+#preferencesDialog .setup-hint{color: var(--text-2); font-size: var(--fs-md);}
+@media (max-width: 720px) {#preferencesDialog .compact-grid,#preferencesDialog .custom-style,#preferencesDialog .custom-style-form{grid-template-columns: 1fr;}
+#preferencesDialog .tag-grid{grid-template-columns: repeat(2, minmax(0px, 1fr));}
+#preferencesDialog .segmented,#preferencesDialog .sync-actions{grid-template-columns: 1fr;}
+#preferencesDialog .option-card,#preferencesDialog .setup-actions{display: grid; align-items: stretch;}
+#preferencesDialog{width: 100vw; max-width: 100vw; max-height: 100dvh; margin: 0px;}
+#preferencesDialog .setup-panel{min-height: 100dvh; max-height: 100dvh; padding: 10px; border-radius: 0px;}
+#preferencesDialog .setup-copy{padding: 14px;}
+#preferencesDialog .setup-copy h2{font-size: clamp(1.45rem, 8vw, 2.1rem);}
+#preferencesDialog .setup-section,#preferencesDialog .setup-advanced > .setup-section{padding: var(--sp-3);}
+#preferencesDialog .setup-advanced > .setup-section{margin: 10px;}
+#preferencesDialog .custom-style{padding: 10px;}
+#preferencesDialog .custom-style-form .ghost-button{min-height: 42px;}
+#preferencesDialog .setup-actions{bottom: -10px; margin: 0px -10px -10px; padding: 14px 10px calc(10px + env(safe-area-inset-bottom));}
+}
+@media (max-width: 480px) {#preferencesDialog .tag-grid{gap: var(--sp-2);}
+#preferencesDialog .tag{min-height: 86px; padding: 10px var(--sp-2) var(--sp-2);}
+#preferencesDialog .tag-label{white-space: normal;}
+}
+#preferencesDialog .stance-block{margin-top: 16px;}
+#preferencesDialog .stance-title{margin: 0px 0px 9px; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-2);}
+#preferencesDialog .stance-row{display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 10px;}
+#preferencesDialog .stance-btn{min-height: 46px; padding: 10px var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius-sm); background: color-mix(in srgb, var(--text-1) 4%, transparent); box-shadow: var(--shadow-card); color: var(--text-1); font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; font-weight: 500; cursor: pointer; transition: border-color 0.15s, background 0.15s, box-shadow 0.15s, transform 0.15s, color 0.15s;}
+#preferencesDialog .stance-btn:not(.active):hover{border-color: color-mix(in srgb, var(--sel-ring) 45%, var(--border)); box-shadow: var(--shadow-card-hover); transform: translateY(-1px);}
+#preferencesDialog .stance-btn.active{border-color: var(--sel-ring); background: var(--sel-bg); box-shadow: 0 0 0 1px color-mix(in srgb, var(--sel-ring) 35%, transparent), var(--shadow-card); color: var(--text-1); font-weight: 700;}
+#preferencesDialog .stance-flag{width: 18px; height: 13px; object-fit: cover; border: 0px; border-radius: 0px; margin-right: 7px; vertical-align: -2px; box-shadow: none;}
+#preferencesDialog .voice-mode-list{display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 10px; margin: 10px 0px 4px;}
+@media (max-width: 560px) {#preferencesDialog .voice-mode-list{grid-template-columns: repeat(2, minmax(0px, 1fr));}
+}
+#preferencesDialog .voice-mode-option{display: flex; flex-direction: row; align-items: center; gap: var(--sp-3); padding: var(--sp-3); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;}
+#preferencesDialog .voice-mode-main{display: flex; flex-direction: column; gap: var(--sp-2); flex: 1 1 auto; min-width: 0px;}
+#preferencesDialog .voice-mode-avatar{flex: 0 0 auto; width: 46px; height: 46px; border-radius: 12px; object-fit: cover; display: block;}
+#preferencesDialog .voice-mode-option.active{border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); box-shadow: 0 0 0 1px var(--accent) inset;}
+#preferencesDialog .voice-mode-pick{display: flex; flex-direction: column; align-items: flex-start; gap: 2px; background: none; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; padding: 0px; cursor: pointer; text-align: left; width: 100%;}
+#preferencesDialog .voice-mode-label{font-size: var(--fs-md); font-weight: 600; color: var(--text-1);}
+#preferencesDialog .voice-mode-desc{font-size: var(--fs-xs); color: var(--text-2);}
+#preferencesDialog .voice-mode-audition{align-self: flex-start; font-size: var(--fs-xs); padding: 3px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text-1); cursor: pointer; transition: background 0.15s, border-color 0.15s;}
+#preferencesDialog .voice-mode-audition:hover{background: var(--surface-2); border-color: var(--text-3);}
+#preferencesDialog .voice-mode-audition:active{transform: translateY(1px);}
+#preferencesDialog .voice-speed-row{display: flex; align-items: center; gap: 10px; margin-top: 4px;}
+#preferencesDialog .voice-speed-label{font-size: var(--fs-xs); color: var(--text-1);}
+#preferencesDialog .voice-speed-row input[type="range"]{flex: 1 1 0%; accent-color: var(--accent);}
+#preferencesDialog .voice-speed-val{font-size: var(--fs-xs); font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; color: var(--text-1);}
+#preferencesDialog .voice-speed-presets{display: flex; gap: var(--sp-2); margin-top: 10px;}
+#preferencesDialog .voice-speed-preset{flex: 1 1 0%; font-size: var(--fs-xs); padding: var(--sp-2) 0; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text-1); cursor: pointer;}
+#preferencesDialog .voice-speed-preset:hover{background: var(--surface-2); border-color: var(--text-3);}
+#preferencesDialog .dual-row{display: grid; grid-template-columns: 1fr 1fr; gap: 16px;}
+#preferencesDialog .dual-col{min-width: 0px;}
+#preferencesDialog .mini-label{margin: 0px; font-size: var(--fs-2xs); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-2);}
+#preferencesDialog .dual-col .segmented,#preferencesDialog .dual-col .stance-row{margin-top: 8px;}
+#preferencesDialog .dual-col .segmented label{justify-content: center; text-align: center; padding: 0px 8px; min-height: 46px; border-radius: var(--radius-sm); font-weight: 500;}
+#preferencesDialog .dual-col .segmented input{display: none;}
+#preferencesDialog .dual-col .stance-row .stance-btn{display: flex; align-items: center; justify-content: center; background: var(--surface); min-height: 46px; padding: 0px 8px; font-weight: 500; white-space: nowrap; overflow: hidden;}
+#preferencesDialog .dual-col .segmented label,#preferencesDialog .dual-col .stance-row .stance-btn{font-size: var(--fs-sm);}
+#preferencesDialog .dual-col .stance-flag{width: 16px; height: 12px; margin-right: 5px;}
+@media (max-width: 560px) {#preferencesDialog .dual-row{grid-template-columns: 1fr; gap: 14px;}
+}
+#preferencesDialog .custom-style-add{margin-top: 12px; border: 1px dashed var(--border); border-radius: var(--radius); background: var(--surface-2);}
+#preferencesDialog .custom-style-add > summary{display: flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: var(--fs-sm); font-weight: 600; color: var(--text-2); cursor: pointer; list-style: none;}
+#preferencesDialog .custom-style-add > summary::-webkit-details-marker{display: none;}
+#preferencesDialog .custom-style-add[open] > summary{color: var(--text-1); border-bottom: 1px solid var(--border);}
+#preferencesDialog .cs-add-plus{font-size: 1.05em; line-height: 1;}
+#preferencesDialog .custom-style-add .custom-style-form{padding: 12px 14px 14px;}
+#preferencesDialog .custom-style-list{display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0px 0px;}
+#preferencesDialog .custom-style-list[hidden]{display: none;}
+#preferencesDialog .cs-chip{display: inline-flex; align-items: center; gap: 7px; padding: 5px 7px 5px 5px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); cursor: pointer; font-size: var(--fs-sm); color: var(--text-1); transition: border-color 0.12s, background 0.12s;}
+#preferencesDialog .cs-chip:hover{border-color: var(--text-2);}
+#preferencesDialog .cs-chip.active{border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface));}
+#preferencesDialog .cs-chip-av{flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 14px; font-weight: 800; line-height: 1; background: color-mix(in srgb, var(--green) 26%, var(--surface)); color: var(--green);}
+#preferencesDialog .cs-chip.active .cs-chip-av:not(.cs-chip-av--img){background: color-mix(in srgb, var(--accent) 26%, var(--surface)); color: var(--accent);}
+#preferencesDialog .cs-chip-name{white-space: nowrap;}
+#preferencesDialog .cs-chip-del{flex: 0 0 auto; width: 18px; height: 18px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 50%; background: transparent; color: var(--text-2); cursor: pointer; font-size: 15px; line-height: 1; display: grid; place-items: center;}
+#preferencesDialog .cs-chip-del:hover{background: color-mix(in srgb, #c0392b 18%, var(--surface)); color: rgb(192, 57, 43);}
+#preferencesDialog .cs-chip-share{flex: 0 0 auto; width: 18px; height: 18px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 50%; background: transparent; color: var(--text-2); cursor: pointer; font-size: 13px; line-height: 1; display: grid; place-items: center;}
+#preferencesDialog .cs-chip-share:hover{background: color-mix(in srgb, var(--accent) 16%, var(--surface)); color: var(--accent);}
+#preferencesDialog .cs-chip.confirming{cursor: default; gap: 6px;}
+#preferencesDialog .cs-chip-q{font-size: 12px; color: var(--text-2); white-space: nowrap;}
+#preferencesDialog .cs-chip-no,#preferencesDialog .cs-chip-yes{flex: 0 0 auto; border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 999px; cursor: pointer; font-size: 12px; font-weight: 600; padding: 3px 9px; line-height: 1;}
+#preferencesDialog .cs-chip-no{background: var(--surface-2); color: var(--text-2);}
+#preferencesDialog .cs-chip-yes{background: rgb(192, 57, 43); color: rgb(255, 255, 255);}
+#preferencesDialog .cs-chip-av{position: relative; cursor: pointer; overflow: hidden;}
+#preferencesDialog .cs-chip-av--img{background-size: cover; background-position: center center; color: transparent;}
+#preferencesDialog .cs-chip-av::after{content: "📷"; position: absolute; inset: 0px; display: grid; place-items: center; font-size: 11px; background: rgba(0, 0, 0, 0.45); border-radius: 50%; opacity: 0; transition: opacity 0.12s;}
+#preferencesDialog .cs-chip-av:hover::after{opacity: 1;}
+#preferencesDialog .cs-hint{display: block; margin: 6px 0px 0px; font-size: 12px; color: rgb(192, 57, 43);}
+#preferencesDialog .cs-hint.ok{color: var(--green);}
+#preferencesDialog .cs-hint[hidden]{display: none;}
+#preferencesDialog .setup-copy h2{font-size: 1.7rem; line-height: 1.22; letter-spacing: -0.012em;}
+[data-theme=dark] #preferencesDialog .setup-panel{background: var(--surface); backdrop-filter: none; border: 1px solid var(--border);}
+#preferencesDialog .setup-copy{position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3);}
+#preferencesDialog .setup-copy > div{min-width: 0px;}
+#preferencesDialog .setup-copy h2{margin-bottom: 0px;}
+#preferencesDialog .setup-close{flex: 0 0 auto; display: grid; width: 34px; height: 34px; padding: 0px; place-items: center; border: 0px; border-radius: 50%; color: var(--text-2); background: transparent; font-size: 1.35rem; line-height: 1; cursor: pointer;}
+#preferencesDialog .setup-close:hover,#preferencesDialog .setup-close:focus-visible{color: var(--text-1); background: var(--surface-2); outline: none;}
+#preferencesDialog .setup-close[hidden]{display: none;}
+#preferencesDialog .setup-panel.mm-preferences #matchSetupSection{display: none;}
+#preferencesDialog .setup-panel.mm-preferences .setup-copy{padding-block: 14px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-copy h2{font-size: clamp(1.45rem, 2.4vw, 1.8rem);}
+#preferencesDialog .setup-subgroup{margin: 10px; border: 1px solid color-mix(in srgb, var(--border) 82%, transparent); border-radius: var(--radius-sm); background: var(--surface); overflow: clip;}
+#preferencesDialog .setup-subgroup + .setup-subgroup{margin-top: 0px;}
+#preferencesDialog .setup-subgroup > summary{display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); min-height: 54px; padding: 9px 12px; list-style: none; cursor: pointer; user-select: none;}
+#preferencesDialog .setup-subgroup > summary::-webkit-details-marker{display: none;}
+#preferencesDialog .setup-subgroup > summary > span{display: flex; min-width: 0px; flex-direction: column; gap: 1px;}
+#preferencesDialog .setup-subgroup > summary strong{color: var(--text-1); font-size: var(--fs-sm);}
+#preferencesDialog .setup-subgroup > summary small{color: var(--text-2); font-size: var(--fs-2xs);}
+#preferencesDialog .setup-subgroup > summary > i{color: var(--text-3); font-style: normal; transition: transform 0.18s;}
+#preferencesDialog .setup-subgroup[open] > summary{background: color-mix(in srgb, var(--surface-2) 68%, transparent);}
+#preferencesDialog .setup-subgroup[open] > summary > i{transform: rotate(180deg);}
+#preferencesDialog .setup-subgroup > .setup-section{margin: 0px 10px 10px; background: var(--surface-2);}
+#preferencesDialog .setup-subgroup > .setup-section + .setup-section{margin-top: 0px;}
+#preferencesDialog .custom-style-manager{display: grid; gap: var(--sp-2);}
+#preferencesDialog .custom-style-manager .custom-style-add{margin-top: 0px;}
+@media (max-width: 720px) {#preferencesDialog .setup-panel.mm-preferences{gap: var(--sp-2); padding-bottom: max(10px, env(safe-area-inset-bottom));}
+#preferencesDialog .setup-panel.mm-preferences .setup-copy{padding: 11px 12px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-copy .eyebrow{display: none;}
+#preferencesDialog .setup-panel.mm-preferences .setup-copy h2{font-size: 1.35rem; line-height: 1.2;}
+#preferencesDialog .setup-panel.mm-preferences .setup-close{width: 32px; height: 32px;}
+#preferencesDialog .setup-panel.mm-preferences .segmented{grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 6px;}
+#preferencesDialog .setup-panel.mm-preferences .segmented label{justify-content: center; min-height: 42px; padding: 0px 4px; font-size: var(--fs-xs); white-space: nowrap;}
+#preferencesDialog .setup-panel.mm-preferences .tag-grid{grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 7px; margin-top: 10px;}
+#preferencesDialog .setup-panel.mm-preferences .tag{min-height: 62px; padding: 7px 5px; gap: 4px;}
+#preferencesDialog .setup-panel.mm-preferences .tag-icon{width: 28px; height: 28px;}
+#preferencesDialog .setup-panel.mm-preferences .tag-desc{display: none;}
+#preferencesDialog .setup-panel.mm-preferences .setup-section{padding: 11px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced > summary{padding: 10px 12px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced__label small{white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+#preferencesDialog .setup-subgroup{margin: 8px;}
+#preferencesDialog .setup-subgroup + .setup-subgroup{margin-top: 0px;}
+#preferencesDialog .setup-subgroup > summary{min-height: 50px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .option-card{display: flex; align-items: center; min-height: 64px; padding: 10px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .option-card p{margin-top: 3px; font-size: var(--fs-2xs); line-height: 1.35;}
+#preferencesDialog .setup-panel.mm-preferences .setup-actions{grid-template-columns: minmax(0px, 1fr) auto; align-items: center; gap: 10px; padding-top: 10px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-hint{font-size: var(--fs-2xs); line-height: 1.35;}
+}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced{border: 0px; background: transparent;}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced > summary{border: 0px; border-radius: var(--radius); background: var(--surface-2);}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced[open] > summary{border-bottom: 0px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup{border: 0px; background: var(--surface); box-shadow: none;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup[open] > summary{background: color-mix(in srgb, var(--surface-2) 58%, transparent);}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup > .setup-section{border: 0px; background: color-mix(in srgb, var(--surface-2) 72%, transparent);}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .option-card{border: 0px; background: transparent; box-shadow: none;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .option-card:hover{border-color: transparent; background: color-mix(in srgb, var(--surface) 52%, transparent); box-shadow: none; transform: none;}
+@media (max-width: 720px) {#preferencesDialog .setup-panel.mm-preferences .setup-subgroup > .setup-section{margin-inline: 6px;}
+}
+#preferencesDialog .setup-panel.mm-preferences .setup-advanced > summary > .ico{width: 24px; height: 24px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup > summary strong{font-size: var(--fs-sm); line-height: 1.25;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup > summary small{margin-top: 2px; font-size: var(--fs-2xs); line-height: 1.3;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup > summary > i{font-size: 11px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup h3,#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .voice-setup-head h3{margin-bottom: 0px; font-size: var(--fs-sm); line-height: 1.3;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .section-title p,#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .option-card p{font-size: var(--fs-xs); line-height: 1.42;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .section-title > .ico{width: 24px; height: 24px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-setup-sub{font-size: var(--fs-2xs);}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-avatar{width: 36px; height: 36px; border-radius: 10px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-label{font-size: var(--fs-sm);}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-desc,#preferencesDialog .setup-panel.mm-preferences .voice-current-chevron,#preferencesDialog .setup-panel.mm-preferences .voice-mode-audition{font-size: var(--fs-2xs);}
+#preferencesDialog .setup-panel.mm-preferences .voice-mode-avatar{width: 40px; height: 40px; border-radius: 10px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-mode-label{font-size: var(--fs-sm);}
+#preferencesDialog .setup-panel.mm-preferences .voice-mode-desc{font-size: var(--fs-2xs); line-height: 1.35;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .cs-form-av{width: 42px; height: 42px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .cs-form-av-ico{width: 18px; height: 18px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .switch{gap: 7px; font-size: var(--fs-xs);}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .switch span{width: 42px; height: 24px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .switch span::after{width: 16px; height: 16px;}
+#preferencesDialog .setup-panel.mm-preferences .setup-subgroup .switch input:checked + span::after{transform: translateX(18px);}
+@media (max-width: 560px) {#preferencesDialog .setup-panel.mm-preferences .voice-collapse > summary{gap: 7px; padding: 9px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-avatar{width: 34px; height: 34px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-desc{max-width: 120px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-chevron{font-size: 0px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-current-chevron .chev{font-size: 11px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-mode-option{gap: 6px; padding: 8px;}
+#preferencesDialog .setup-panel.mm-preferences .voice-mode-avatar{width: 34px; height: 34px; border-radius: 9px;}
+}
+#preferencesDialog{position: fixed; inset: 0px 0px 0px auto; width: min(620px, -32px + 100vw); height: 100dvh; max-height: none; margin: 0px; padding: 0px; border: 0px; background: transparent;}
+#preferencesDialog::backdrop{background: color-mix(in srgb, var(--modal-overlay) 82%, transparent); backdrop-filter: blur(4px);}
+#preferencesDialog .setup-panel{width: 100%; height: 100dvh; max-height: none; border-top: 0px; border-right: 0px; border-bottom: 0px; border-image: initial; border-left: 1px solid var(--border); border-radius: var(--radius-lg) 0 0 var(--radius-lg); background: linear-gradient(180deg, color-mix(in srgb, var(--text-1) 3%, transparent), transparent 180px),
+    var(--surface); box-shadow: rgba(0, 0, 0, 0.22) -20px 0px 60px;}
+#preferencesDialog .setup-copy{position: sticky; top: -18px; z-index: 8; margin: -18px -18px 0px; padding: 18px; border-bottom: 1px solid var(--border); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(16px);}
+#preferencesDialog .setup-actions{position: sticky; bottom: -18px; z-index: 8; margin: 0px -18px -18px; padding: 14px 18px max(14px, env(safe-area-inset-bottom)); border-top: 1px solid var(--border); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(16px);}
+@media (prefers-reduced-motion: no-preference) {#preferencesDialog[open] .setup-panel{animation: 180ms ease-out 0s 1 normal none running match-drawer-in;}
+}
+@media (max-width: 720px) {#preferencesDialog{inset: 0px; width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0px;}
+#preferencesDialog .setup-panel{height: 100dvh; max-height: 100dvh; padding: 14px; border: 0px; border-radius: 0px; box-shadow: none;}
+#preferencesDialog .setup-copy{top: -14px; margin: -14px -14px 0px; padding: max(14px, env(safe-area-inset-top)) 14px 12px;}
+#preferencesDialog .setup-actions{bottom: -14px; margin: 0px -14px -14px; padding: 12px 14px max(12px, env(safe-area-inset-bottom));}
+}
+
+#preferencesDialog .setup-panel{display: flex; flex-direction: column; gap: 16px;}
+#preferencesDialog .setup-panel > *{flex: 0 0 auto;}
+#preferencesDialog .setup-copy,#preferencesDialog .setup-panel.mm-preferences .setup-copy{padding-block: 18px; min-height: 0px;}
+#preferencesDialog .setup-copy .eyebrow{display: none;}
+#preferencesDialog .setup-panel .setup-copy h2{font-size: 22px; line-height: 1.4;}
+#preferencesDialog .dual-row{grid-template-columns: minmax(0px, 1fr); gap: 18px;}
+#preferencesDialog .setup-section{padding: 16px;}
+#preferencesDialog .mini-label{font-size: 13px; margin-bottom: 10px;}
+#preferencesDialog .segmented,#preferencesDialog .stance-row{display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 6px;}
+#preferencesDialog .segmented label{position: relative;}
+#preferencesDialog .dual-col .segmented input,#preferencesDialog .setup-panel.mm-first-run .segmented input{display: block; position: absolute; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;}
+#preferencesDialog .segmented label:has(input:focus-visible){outline: 2px solid var(--accent); outline-offset: 2px;}
+#preferencesDialog .segmented label span,#preferencesDialog .stance-btn{min-height: 44px; font-size: 13px; white-space: normal; overflow: visible; padding: 9px 5px;}
+#preferencesDialog .stance-btn{display: flex; align-items: center; justify-content: center; gap: 5px; line-height: 1.4;}
+#preferencesDialog .stance-flag{width: 20px; height: 20px; object-fit: contain; flex: 0 0 auto;}
+#preferencesDialog .setup-panel .tag-grid{display: grid; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 8px;}
+#preferencesDialog .setup-panel .tag{position: relative; display: grid; grid-template-columns: 26px minmax(0px, 1fr); grid-template-rows: auto auto; align-content: center; align-items: center; gap: 4px 10px; min-height: 72px; padding: 12px; border-radius: 10px; text-align: left; box-shadow: none;}
+#preferencesDialog .setup-panel .tag-icon{grid-area: 1 / 1 / 3; width: 24px; height: 24px; margin: 0px;}
+#preferencesDialog .setup-panel .tag-label{grid-column: 2; font-size: 13px; line-height: 1.4; padding-right: 10px;}
+#preferencesDialog .setup-panel .tag-desc{display: block; grid-column: 2; font-size: 11px; line-height: 1.5; color: var(--text-2); white-space: normal;}
+#preferencesDialog .tag.active::after{content: "✓"; position: absolute; top: 6px; right: 8px; font-size: 11px; color: var(--accent);}
+#preferencesDialog .style-selection-summary{font-size: 11px; margin: 10px 0px 0px; color: var(--text-2);}
+#preferencesDialog .preference-groups{display: grid; gap: 0px; border: 1px solid var(--border); border-radius: 12px; overflow: clip;}
+#preferencesDialog .setup-panel .setup-subgroup{margin: 0px; border: 0px; border-radius: 0px; padding: 0px; background: transparent;}
+#preferencesDialog .setup-subgroup + .setup-subgroup{border-top: 1px solid var(--border);}
+#preferencesDialog .setup-subgroup > summary{padding: 17px 16px; min-height: 52px;}
+#preferencesDialog .setup-panel .setup-subgroup > summary strong{font-size: 13px; font-weight: 600;}
+#preferencesDialog .setup-panel .setup-subgroup > .setup-section{margin: 0px; padding: 14px 16px;}
+#preferencesDialog .setup-subgroup > .setup-section + .setup-section{border-top: 1px solid var(--border);}
+#preferencesDialog .setup-subgroup .option-card{align-items: center;}
+#preferencesDialog .setup-panel .setup-subgroup h3{font-size: 13px;}
+#preferencesDialog .setup-panel .setup-subgroup .option-card p{font-size: 12px; line-height: 1.6;}
+#preferencesDialog .setup-panel .setup-actions{margin-top: auto; min-height: 70px; padding-block: 14px; gap: 12px;}
+#preferencesDialog .setup-panel .setup-hint{font-size: 11px; line-height: 1.5; max-width: none;}
+#preferencesDialog .setup-actions .send-button{min-height: 42px; border-radius: 9px; white-space: nowrap;}
+#preferencesDialog .voice-collapse{border: 0px;}
+#preferencesDialog .voice-mode-list{grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 8px; margin-block: 12px 16px;}
+#preferencesDialog .setup-panel .voice-mode-option{display: flex; flex-direction: column; align-items: stretch; padding: 0px; gap: 0px; border-radius: 10px; overflow: hidden;}
+#preferencesDialog .voice-mode-option.active{box-shadow: none;}
+#preferencesDialog .voice-mode-pick{display: flex; flex-direction: row; align-items: center; gap: 10px; min-height: 68px; padding: 10px;}
+#preferencesDialog .voice-mode-pick:focus-visible{outline-offset: -3px; border-radius: 9px;}
+#preferencesDialog .setup-panel .voice-mode-avatar{width: 32px; height: 32px; border-radius: 8px;}
+#preferencesDialog .voice-mode-copy{display: flex; flex-direction: column; gap: 3px; min-width: 0px;}
+#preferencesDialog .setup-panel .voice-mode-label{font-size: 12px;}
+#preferencesDialog .setup-panel .voice-mode-desc{display: block; font-size: 11px; line-height: 1.5;}
+#preferencesDialog .voice-mode-audition{width: 100%; min-height: 36px; border-right: 0px; border-bottom: 0px; border-left: 0px; border-image: initial; border-top: 1px solid var(--border); border-radius: 0px; background: transparent; font-size: 11px;}
+#preferencesDialog .voice-speed-presets{justify-content: flex-end;}
+#preferencesDialog .voice-speed-preset{flex: 0 0 60px; min-height: 36px; border-radius: 8px;}
+#preferencesDialog .voice-speed-preset[aria-pressed="true"]{border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent);}
+@media (max-width: 480px) {#preferencesDialog .setup-panel .tag{grid-template-columns: 20px minmax(0px, 1fr); gap: 4px 7px; padding: 10px; min-height: 78px;}
+#preferencesDialog .setup-panel .tag-icon{width: 20px; height: 20px;}
+#preferencesDialog .setup-panel .tag-label{font-size: 12px;}
+#preferencesDialog .setup-panel .tag-desc{font-size: 10px;}
+#preferencesDialog .setup-panel .voice-mode-avatar{display: none;}
+#preferencesDialog .stance-btn{font-size: 12px; flex-direction: column;}
+#preferencesDialog .setup-panel .setup-actions{min-height: 66px;}
+#preferencesDialog .setup-panel .setup-hint{max-width: 170px;}
+}
+
+#preferencesDialog{width:min(1050px,calc(100vw - 28px));max-width:calc(100vw - 28px);max-height:calc(100dvh - 28px);padding:0;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+#preferencesDialog .setup-panel{margin:0;padding:18px;max-height:calc(100dvh - 30px);overflow:auto;overscroll-behavior:contain}
+#preferencesDialog h2,#preferencesDialog h3,#preferencesDialog h4{margin-top:0}#preferencesDialog h3{font-size:16px}#preferencesDialog p{line-height:1.6}
+#preferencesDialog .setup-copy{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--panel)}#preferencesDialog .setup-copy h2{margin:0}
+#preferencesDialog .setup-close{font-size:28px;border:0;background:transparent;padding:0 8px;color:var(--tx2)}
+#preferencesDialog .preference-section-icon{width:26px;height:26px;object-fit:contain}#preferencesDialog .section-title{display:flex;align-items:center;gap:12px;margin-bottom:16px}#preferencesDialog .section-title h3{margin:0}
+#preferencesDialog .setup-subgroup>summary{display:flex;justify-content:space-between;align-items:center;cursor:pointer;list-style:none}#preferencesDialog .setup-subgroup>summary::-webkit-details-marker{display:none}#preferencesDialog .setup-subgroup>summary i{font-style:normal;color:var(--mut)}#preferencesDialog .setup-subgroup[open]>summary i{transform:rotate(180deg)}
+#preferencesDialog .stance-btn.active{border-color:var(--home);background:var(--sel-bg);box-shadow:0 0 0 1px var(--home)}#preferencesDialog .segmented label span{display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.4}
+#preferencesDialog .tag-icon svg{width:100%;height:100%}#preferencesDialog .setup-subgroup>.setup-section{border:0;border-radius:0;background:var(--panel)}
+#preferencesDialog .voice-mode-list{display:grid}#preferencesDialog .voice-mode-pick{width:100%;text-align:left;background:transparent;border:0;color:var(--tx)}#preferencesDialog .voice-mode-option{border:1px solid var(--line)}#preferencesDialog .voice-mode-option.active{border-color:var(--home);background:var(--sel-bg)}
+#preferencesDialog .voice-speed-row{display:flex;gap:12px;align-items:center}#preferencesDialog input[type=range]{accent-color:var(--home);min-width:0;flex:1}#preferencesDialog .voice-speed-presets{display:flex;gap:8px;margin-top:8px}
+#preferencesDialog .setup-actions{position:sticky;bottom:-18px;background:var(--panel);border-top:1px solid var(--line);margin:6px -18px -18px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;z-index:2}
+#preferencesDialog .send-button{color:var(--tx);background:var(--rec);border:1px solid var(--line);padding:8px 20px}#preferencesDialog .switch b{font-size:12px;font-weight:400}#preferencesDialog .switch input:checked+span{background:var(--home)}
+#preferencesDialog .custom-style-form input,#preferencesDialog textarea{width:100%;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:8px;font:inherit;resize:vertical}#preferencesDialog textarea{padding:10px;min-height:80px}
+#preferencesDialog .cs-form-av svg{width:24px;height:24px}#preferencesDialog .cs-form-av.has-img svg,#preferencesDialog .cs-form-av.has-img .cs-form-av-ph{display:none}#preferencesDialog .cs-form-av{background-size:cover;background-position:center}
+#preferencesDialog .custom-style-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}#preferencesDialog .custom-style-chip{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}#preferencesDialog .custom-style-chip.active{border-color:var(--home);background:var(--sel-bg)}#preferencesDialog .custom-style-chip button{background:transparent;border:0;padding:8px;color:var(--tx)}#preferencesDialog .custom-style-chip img{width:24px;height:24px;vertical-align:middle;margin-right:6px}#preferencesDialog .ghost-button{color:var(--tx);background:var(--rec);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+#preferencesDialog #preferenceStatus:empty{display:none}#preferencesDialog :focus-visible{outline:2px solid var(--home);outline-offset:2px}#preferencesDialog [hidden]{display:none!important}
+#toolsDialog.lineup-dialog{width:min(1080px,calc(100vw - 32px));max-width:calc(100vw - 32px);max-height:92dvh;padding:22px;border-radius:18px}#toolsDialog.lineup-dialog #dialogBody{padding-top:20px}#toolsDialog.lineup-dialog .dialog-heading{border-bottom:1px solid var(--line);padding-bottom:14px}
+.workspace.is-video-hidden{grid-template-columns:minmax(0,1fr)!important}.workspace.is-video-hidden .viewing-panel,.workspace.is-video-hidden .panel-resizer{display:none!important}
+.inside-buddy-avatar img,.inside-user-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover}.inside-buddy-avatar{display:block;padding:8px 12px 0}
+@media(max-width:600px){#preferencesDialog .setup-panel{padding:12px;gap:12px}#preferencesDialog .setup-section{padding:12px}#preferencesDialog .setup-actions{bottom:-12px;margin-inline:-12px;margin-bottom:-12px;padding:12px;flex-wrap:wrap}#preferencesDialog .tag-grid{grid-template-columns:minmax(0,1fr)!important}#preferencesDialog .compact-grid{grid-template-columns:minmax(0,1fr)}#preferencesDialog .stance-btn{flex-wrap:wrap}#toolsDialog.lineup-dialog{padding:14px}#preferencesDialog .setup-actions .send-button{margin-left:auto}}
+/* Match the original demo's full-height preferences drawer. */
+#preferencesDialog{inset:0 0 0 auto;width:min(620px,calc(100vw - 32px));height:100dvh;max-height:none;max-width:none;margin:0;padding:0;border:0;border-radius:0;background:transparent;--modal-overlay:#0005;--radius-lg:18px}
+#preferencesDialog .setup-panel{height:100dvh;max-height:100dvh;border:0;border-left:1px solid var(--line);border-radius:18px 0 0 18px;background:var(--panel)}
+#preferencesDialog .setup-subgroup>summary i{display:block;font-size:0;width:6px;height:6px;border:0;border-right:1.5px solid var(--mut);border-bottom:1.5px solid var(--mut);border-radius:0;background:none;transform:rotate(45deg);flex:none;margin-right:3px}
+#preferencesDialog .setup-subgroup[open]>summary i{transform:rotate(225deg)}
+@media(max-width:720px){#preferencesDialog{inset:0;width:100vw;height:100dvh;max-width:none}#preferencesDialog .setup-panel{border:0;border-radius:0}}

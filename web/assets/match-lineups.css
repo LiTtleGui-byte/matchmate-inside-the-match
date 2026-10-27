@@ -1,0 +1,63 @@
+/* Independent half-pitches: readable players instead of scaling a full SVG. */
+.visual-modal--lineup { padding: 16px; place-items: center; }
+.visual-modal--lineup .visual-modal-card { width: min(1080px, calc(100vw - 32px)); height: auto; max-height: 92dvh; padding: 22px; border-radius: 18px; }
+.visual-modal--lineup .visual-modal-head { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.visual-modal--lineup .visual-modal-close { border: 0; border-radius: 8px; background: transparent; }
+.visual-modal--lineup .visual-modal-body { align-items: flex-start; }
+.lineup-boards { width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.lineup-team-board { min-width: 0; --lineup-team: var(--chart-home, var(--accent)); }
+.lineup-team-board[data-team="away"] { --lineup-team: var(--chart-away, #496679); }
+.lineup-team-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; padding: 0 4px; }
+.lineup-team-heading > span:first-child { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.lineup-team-heading img { width: 28px; height: 28px; object-fit: contain; }
+.lineup-team-heading img[hidden] { display: none; }
+.lineup-team-heading strong { font-size: .9375rem; font-weight: 600; }
+.lineup-formation { color: var(--text-2); font-size: .75rem; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.lineup-half-pitch { position: relative; display: grid; grid-template-rows: repeat(var(--formation-rows), minmax(0, 1fr)); height: 560px; min-height: calc(var(--formation-rows) * 100px + 40px); padding: 22px 10px 16px; gap: 6px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: color-mix(in srgb, var(--lineup-pitch, #d8ded1) 60%, var(--surface)); }
+.lineup-field-lines { position: absolute; inset: 0; width: 100%; height: 100%; stroke: color-mix(in srgb, var(--text-1) 13%, transparent); fill: none; stroke-width: 1; pointer-events: none; }
+.lineup-formation-row { position: relative; display: grid; grid-template-columns: repeat(var(--row-players), minmax(0, 1fr)); align-items: center; justify-items: center; gap: 2px; }
+.lineup-boards .player-marker { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; position: relative; padding: 3px 2px; width: 100%; max-width: 108px; min-height: 88px; min-width: 0; border: 0; border-radius: 9px; background: transparent; color: var(--text-1); cursor: pointer; font: inherit; transform: none; }
+.lineup-boards .player-marker:hover { transform: none; background: color-mix(in srgb, var(--surface) 50%, transparent); }
+.lineup-portrait { position: relative; display: grid; place-items: center; width: 54px; height: 54px; border: 1.5px solid color-mix(in srgb, var(--lineup-team) 65%, var(--border)); border-radius: 50%; background: var(--surface); flex-shrink: 0; }
+.lineup-portrait.is-goalkeeper { border-color: #bd962c; }
+.lineup-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; min-width: 0; min-height: 0; object-fit: cover; object-position: center 25%; border-radius: inherit; }
+.lineup-portrait img[hidden] { display: none; }
+.lineup-portrait img:not([hidden]) ~ .lineup-initials { display: none; }
+.lineup-initials { color: var(--lineup-team); font-size: 13px; font-weight: 650; }
+.lineup-number { position: absolute; right: -5px; bottom: -1px; display: grid; place-items: center; min-width: 19px; height: 19px; padding: 0 3px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text-1); font-size: 10px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.lineup-rating { font-size: 11px; font-weight: 650; color: var(--lineup-team); line-height: 1; font-variant-numeric: tabular-nums; }
+.lineup-rating.is-high { padding: 3px 6px; margin-block: -3px; color: var(--accent); background: var(--surface); border-radius: 5px; }
+.lineup-player-name { width: 100%; max-width: 106px; font-size: .75rem; font-weight: 500; line-height: 1.4; overflow-wrap: anywhere; text-align: center; }
+.lineup-bench { margin-top: 10px; border-bottom: 1px solid var(--border); }
+.lineup-bench > summary { display: flex; align-items: center; gap: 8px; min-height: 44px; color: var(--text-2); font-size: 12px; cursor: pointer; list-style: none; }
+.lineup-bench > summary::-webkit-details-marker { display: none; }
+.lineup-bench > summary::after { content: '⌄'; margin-left: auto; }
+.lineup-bench[open] > summary::after { transform: rotate(180deg); }
+.lineup-bench-empty { margin: 0; padding: 16px 4px 4px; color: var(--text-2); font-size: 11px; }
+.lineup-bench-list, .lineup-unplaced { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 10px 0; }
+.lineup-boards .sub-tile { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-width: 0; padding: 8px 4px; gap: 8px; border: 0; background: var(--surface-2); border-radius: 8px; color: var(--text-1); }
+.lineup-boards .sub-tile .lineup-portrait { width: 36px; height: 36px; }
+[data-theme=dark] .lineup-half-pitch { background: color-mix(in srgb, var(--chart-home) 6%, var(--surface-2)); }
+@media (max-width: 760px) {
+  .visual-modal--lineup { padding: 0; }
+  .visual-modal--lineup .visual-modal-card { width: 100vw; height: 100dvh; max-height: 100dvh; padding: 16px; border-radius: 0; }
+  .visual-modal--lineup .visual-modal-head { margin-bottom: 14px; }
+  .lineup-boards { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .lineup-half-pitch { height: 520px; min-height: calc(var(--formation-rows) * 90px + 40px); padding-inline: 8px; }
+  .lineup-portrait { width: 44px; height: 44px; }
+  .lineup-player-name { font-size: .75rem; }
+  .lineup-boards .player-marker { max-width: 100px; }
+}
+@media (max-width: 360px) {
+  .lineup-portrait { width: 36px; height: 36px; }
+  .lineup-player-name { font-size: .6875rem; }
+  .lineup-number { min-width: 17px; height: 17px; font-size: 9px; }
+}
+
+/* Confirmation belongs to each team, not the whole fixture. */
+.lineup-state {margin:0 4px 8px;color:var(--text-2);font-size:12px;line-height:1.5;}
+.lineup-state.is-predicted {color:var(--accent);font-weight:600;}
+.lineup-state-note {margin:0 4px 8px;color:var(--text-2);font-size:11px;line-height:1.5;overflow-wrap:anywhere;}
+.lineup-team-heading strong {overflow-wrap:anywhere;}
+
+.lineup-default-avatar { display: block; width: 80%; height: 80%; opacity: .45; }

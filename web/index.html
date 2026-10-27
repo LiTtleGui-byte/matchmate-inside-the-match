@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Understand key football moments while watching a simulated live match with MatchMate."><title>MatchMate — Inside the Match</title><link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/assets/app.css"><link rel="stylesheet" href="/assets/header.css"><link rel="stylesheet" href="/assets/composer.css"><script>try{document.documentElement.dataset.theme=localStorage.getItem('inside-theme')||'light'}catch{}</script><link rel="stylesheet" href="/assets/layout.css"><link rel="stylesheet" href="/assets/details.css"><link rel="stylesheet" href="/assets/match-lineups.css"><link rel="stylesheet" href="/assets/header-entry.css"><link rel="stylesheet" href="/assets/search.css"><link rel="stylesheet" href="/assets/quiet-chat.css"><link rel="stylesheet" href="/assets/data-view.css"><link rel="stylesheet" href="/assets/chat-moments.css"><link rel="stylesheet" href="/assets/welcome.css"><link rel="stylesheet" href="/assets/autoplay.css"><link rel="stylesheet" href="/assets/full-data.css"><link rel="stylesheet" href="/assets/data-title.css"></head>
+<body>
+<header class="topbar demo-header">
+ <a class="brand" href="/" aria-label="MatchMate — Inside the Match">
+  <span class="brand-mark"><img src="/assets/header-brand.png" alt=""></span>
+  <span class="brand-words"><strong>MatchMate</strong><small>Your MatchMate</small></span>
+ </a>
+ <section class="match-select-card" aria-label="Current match">
+  <button type="button" class="fixture-trigger" id="fixtureTrigger" aria-label="View match lineups" title="View match lineups">
+   <span class="match-info">
+    <span class="match-info__side is-home"><span class="match-info__logo"><img data-crest src="/assets/home-team.svg" alt=""><span hidden>PSG</span></span><span class="match-info__name"><strong title="Paris Saint-Germain">Paris Saint-Germain</strong><small>4-3-3</small></span></span>
+    <span class="match-info__center"><strong id="score" class="match-info__score">VS</strong><span id="shootoutScore" class="match-info__penalties" hidden></span><span class="match-info__meta"><b id="statusBadge" hidden></b><span id="matchClock">—</span></span></span>
+    <span class="match-info__side is-away"><span class="match-info__logo"><img data-crest src="/assets/away-team.svg" alt=""><span hidden>ARS</span></span><span class="match-info__name"><strong>Arsenal</strong><small>4-2-3-1</small></span></span>
+   </span>
+  </button>
+  <button type="button" class="fixture-lineup" id="lineupsButton" title="View lineups" aria-label="View lineups"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M12 5v14M3 9h3v6H3m18-6h-3v6h3"/><circle cx="12" cy="12" r="2.5"/></svg><span>Lineups</span></button>
+  <button type="button" class="fixture-lineup" id="eventsButton" title="View match events" aria-label="View match events"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M7 4v16M12 6h8M12 12h6M12 18h8"/><circle cx="7" cy="6" r="2"/><circle cx="7" cy="12" r="2"/><circle cx="7" cy="18" r="2"/></svg><span>Events</span></button>
+  <button type="button" class="fixture-chevron" id="fixtureChevron" aria-haspopup="listbox" aria-expanded="false" aria-controls="fixturePanel" aria-label="Match selection" title="Match selection"><span aria-hidden="true"></span></button>
+  <div id="fixturePanel" class="header-popover fixture-panel" role="listbox" aria-label="Match selection" hidden><button type="button" role="option" aria-selected="true" id="currentFixture"><strong>Paris Saint-Germain vs Arsenal</strong><small>Current match</small></button></div>
+ </section>
+ <nav class="status-dock" aria-label="Viewing tools">
+  <button type="button" class="status-chip" id="preferencesButton" title="Viewing preferences" aria-label="Viewing preferences"><span class="header-ico ico-sliders" aria-hidden="true"></span><b>Preferences</b><small id="preferencesSummary">Regular fan · English</small></button>
+  <button type="button" class="status-chip header-theme" id="themeButton" title="Switch theme" aria-label="Switch theme"><span class="header-ico ico-theme" aria-hidden="true"></span></button>
+ </nav>
+</header>
+
+<main class="workspace">
+ <section id="viewingPanel" class="viewing-panel" aria-label="Match video">
+  <div id="playerShell" class="player-shell">
+   <video id="video" playsinline preload="metadata" aria-label="Paris Saint-Germain versus Arsenal recorded match"></video>
+   <div class="video-labels"><span id="replayLabel" hidden>Replay</span><span id="liveContinues" hidden>Live continues</span></div>
+   <div id="videoLoading" class="video-notice" role="status"><span class="spinner"></span><strong>Joining the match…</strong></div>
+   <div id="videoError" class="video-notice" hidden><strong>The video could not load.</strong><button id="retryVideo">Retry video</button></div>
+   <div class="video-controls"><input id="seek" type="range" min="0" max="1" value="0" step="1" aria-label="Seek within released broadcast"><div class="controls-row"><button id="playButton" aria-label="Play">▶</button><button id="muteButton" aria-label="Mute">Sound on</button><span id="viewClock">—</span><span class="controls-spacer"></span><button id="goLiveButton" hidden>Back to live</button><button id="fullscreenButton" aria-label="Full screen">⛶</button></div></div>
+  </div>
+  <div id="replayBar" class="replay-bar" hidden><span id="replayBarText"></span><button id="returnButton">Return to match</button></div>
+  <div class="broadcast-meta" hidden><span>Champions League · Final</span><span>Simulated live · recorded match <button id="demoInfoButton" aria-label="About this demonstration">ⓘ</button></span></div>
+  <p id="connectionNotice" class="connection-notice" role="status" hidden></p>
+ </section>
+ <div id="panelResizer" class="panel-resizer" role="separator" tabindex="0" aria-orientation="vertical" aria-label="Resize video and chat" aria-controls="companionPanel" title="Drag to resize; double-click to reset"></div>
+ <aside id="companionPanel" class="companion-panel" aria-label="Match data and conversation">
+  <details id="dataPanel" class="data-panel" open><summary aria-label="Match data"><span class="data-section-mark" aria-hidden="true"></span><strong class="data-section-title">Match data</strong><button type="button" id="selectDataButton">Select data</button><svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 8 4 4 4-4"/></svg></summary><div id="statsGrid" class="stats-grid"></div><div id="dataVisuals"></div><div id="pinnedPlayers"></div><p id="dataEmptySelection" class="data-empty" hidden>Choose the data you want to see.</p></details>
+  <section id="conversation" class="conversation" aria-live="polite" aria-label="Match conversation"><div class="welcome quiet-welcome"><div class="starter-heading"><img src="/assets/header-brand.png" alt=""><div><strong>MatchMate</strong><p>Welcome to your match companion.</p></div></div><div id="starterQuestions" class="starter-questions" role="group" aria-label="Suggested questions"></div><button id="startFirstMoment" class="first-moment-link" type="button">Jump to the first key moment <span aria-hidden="true">→</span></button></div></section>
+  <form id="chatForm" class="composer demo-composer">
+ <label class="sr-only" for="chatInput">Ask about tactics, players or momentum</label>
+ <button type="button" id="contextTag" class="context-tag" aria-label="Clear conversation context" hidden><span id="contextText"></span><span aria-hidden="true"> ×</span></button>
+ <textarea id="chatInput" rows="1" maxlength="1200" placeholder="Ask about tactics, players or momentum…" autocomplete="off"></textarea>
+ <span id="inputBasis" class="sr-only">At your viewing position</span>
+ <div class="chat-composer-actions">
+  <details class="composer-more" id="composerMore">
+   <summary aria-label="More conversation options" title="More conversation options"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg></summary>
+   <div class="composer-more-menu">
+    <button type="button" id="composerPreferences"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 6h7m4 0h7M3 12h3m4 0h11M3 18h11m4 0h3M10 3v6M6 9v6m8 0v6"/></svg><span>Viewing preferences</span></button>
+    <button type="button" id="clearChat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg><span>Clear conversation</span></button>
+    <div id="clearChatConfirm" class="clear-confirm" role="group" aria-label="Clear this conversation?" hidden><button type="button" id="clearChatCancel">Cancel</button><button type="button" id="clearChatConfirmButton">Clear</button></div>
+   </div>
+  </details>
+  <button type="button" class="web-search-toggle" id="webSearchToggle" aria-pressed="false" aria-label="Web search" aria-describedby="webSearchState" title="Connecting web search…" disabled><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6.5h14M5 17.5h14"/></svg><span>Web search</span><small class="sr-only" id="webSearchState">Unavailable</small></button>
+  <div class="composer-right">
+   <button type="button" id="micButton" class="composer-mic" title="Voice input" aria-label="Voice input" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+   <button id="sendButton" type="submit" class="send-button" aria-label="Send message" disabled>Send</button>
+  </div>
+ </div>
+</form>
+
+ </aside>
+</main>
+<dialog id="toolsDialog"><form method="dialog" class="dialog-heading"><strong id="dialogTitle"></strong><button aria-label="Close dialog">×</button></form><div id="dialogBody"></div></dialog>
+<dialog id="dataSelectDialog" class="data-select-dialog" aria-labelledby="dataSelectTitle"><header class="data-modal-head"><div><h2 id="dataSelectTitle">Select data</h2><p id="dataSelectionCount" aria-live="polite"></p></div><div class="data-modal-actions"><button type="button" id="resetDataSelection">Reset</button><button type="button" id="closeDataSelection">Close</button></div></header><section class="desk-groups"><div id="dataOptions"></div></section></dialog>
+<dialog id="dataDetailDialog" aria-labelledby="dataDetailTitle"><header class="dialog-heading"><strong id="dataDetailTitle"></strong><button type="button" id="closeDataDetail" aria-label="Close details">×</button></header><div id="dataDetailBody"></div></dialog>
+<script type="module" src="/assets/app.js"></script>
+<script type="module" src="/assets/layout.js"></script>
+<script type="module" src="/assets/preferences.js"></script>
+</body></html>

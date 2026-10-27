@@ -1,0 +1,2 @@
+/* Keep a compact sound control available after muted autoplay fallback. */
+.controls-row #muteButton{display:inline-flex;align-items:center;justify-content:center;width:36px;padding:6px;flex-shrink:0}.controls-row #muteButton svg{width:20px;height:20px}

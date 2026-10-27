@@ -1,0 +1,29 @@
+/* Quiet conversation presentation; composer and player controls are retained. */
+#conversation{padding:20px;scroll-padding-bottom:16px}
+#conversation .quiet-welcome{padding:30px 2px;color:var(--mut)}
+#conversation .quiet-welcome p{margin:0 0 10px;font-size:14px;line-height:1.6;color:var(--mut)}
+#conversation .first-moment-link{display:inline-flex;align-items:center;gap:8px;margin:0;padding:4px 0;min-height:36px;border:0;border-radius:4px;background:transparent;color:var(--tx2);font-size:12px;font-weight:400;text-align:left;white-space:normal}
+#conversation .first-moment-link:hover{color:var(--home);text-decoration:underline;text-underline-offset:4px}
+#conversation .explanation-card{margin:0 0 24px;padding:0;border:0;border-radius:0;background:transparent;overflow:visible;box-shadow:none}
+#conversation .answer-body p{margin:0 0 10px;font-size:14px;line-height:1.7;color:var(--tx);white-space:pre-wrap;overflow-wrap:anywhere}
+#conversation .answer-body p:last-child{margin-bottom:0}
+#conversation .card-actions{gap:16px;padding:8px 0 0;align-items:center}
+#conversation .card-actions button{min-height:36px;padding:4px 0;border:0;border-radius:4px;background:transparent;color:var(--tx2);font-size:12px;font-weight:400;text-align:left}
+#conversation .card-actions button:hover{color:var(--home);text-decoration:underline;text-underline-offset:4px}
+#conversation .followups{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin-top:5px;padding:0;border:0}
+#conversation .followups button{display:block;min-height:36px;max-width:100%;padding:6px 0;border:0;border-radius:4px;background:transparent;color:var(--mut);font-size:12px;line-height:1.5;text-align:left;white-space:normal;overflow-wrap:anywhere}
+#conversation .followups button:hover{color:var(--home);text-decoration:underline;text-underline-offset:4px}
+#conversation .evidence{margin-top:8px;padding:10px 0 0;border-top:1px solid var(--line)}
+#conversation .evidence>p:first-child{margin-top:0}
+#conversation .loading-card{display:flex;align-items:center;gap:9px;min-height:38px;color:var(--mut);font-size:13px}
+#conversation .loading-card .spinner{width:13px;height:13px;flex-shrink:0}
+#conversation .user-message{margin:0 0 18px auto;padding:8px 12px;max-width:88%;font-size:14px;line-height:1.6}
+#conversation .empty-card,#conversation .error-card{padding:0;margin:0 0 24px;border:0;border-radius:0;background:transparent}
+#conversation .empty-card h3,#conversation .error-card strong{font-size:14px;font-weight:500;color:var(--tx)}
+#conversation .empty-card .eyebrow{display:none}
+#conversation .empty-card button,#conversation .error-card button{padding:4px 0;min-height:36px;border:0;background:transparent;color:var(--tx2);font-size:12px}
+#conversation .web-answer-label{margin-bottom:8px;font-size:11px}
+#conversation .web-answer-text p{margin:0 0 10px;font-size:14px;line-height:1.7}
+#chatForm.demo-composer .context-tag{align-self:flex-start;width:auto;max-width:100%;min-height:26px;margin:0;padding:2px 4px;border:0;border-radius:4px;background:transparent;box-shadow:none;color:var(--mut);font-size:11px;line-height:1.5;white-space:nowrap}
+#chatForm.demo-composer .context-tag:hover{background:var(--rec);color:var(--tx2)}
+@media(max-width:800px){#conversation{padding:16px;min-height:170px}#conversation .quiet-welcome{padding:14px 0}#conversation .card-actions button,#conversation .followups button{min-height:40px}}
